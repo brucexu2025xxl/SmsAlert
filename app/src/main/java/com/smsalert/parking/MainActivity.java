@@ -13,6 +13,7 @@ import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.ScrollView;
 import android.widget.TextView;
@@ -51,6 +52,11 @@ public class MainActivity extends AppCompatActivity {
         keywordListView = findViewById(R.id.keyword_list);
         logTextView = findViewById(R.id.log_text);
         logScroll = findViewById(R.id.log_scroll);
+
+        // 发件人列表：点击展开/收起
+        senderListView.setOnItemClickListener((parent, view, position, id) -> toggleListHeight(senderListView));
+        // 关键词列表：点击展开/收起
+        keywordListView.setOnItemClickListener((parent, view, position, id) -> toggleListHeight(keywordListView));
 
         EditText senderInput = findViewById(R.id.sender_input);
         Button addSenderBtn = findViewById(R.id.add_sender_btn);
@@ -132,7 +138,7 @@ public class MainActivity extends AppCompatActivity {
             }
         }
         if (senderList.isEmpty()) {
-            senderList.add("广东交警");
+            senderList.add("交警");
         }
 
         String savedKeywords = prefs.getString("keywords", "");
@@ -223,6 +229,16 @@ public class MainActivity extends AppCompatActivity {
                 Toast.makeText(this, "短信权限未授权，App 无法监听短信", Toast.LENGTH_LONG).show();
             }
         }
+    }
+
+    private void toggleListHeight(ListView listView) {
+        LinearLayout.LayoutParams params = (LinearLayout.LayoutParams) listView.getLayoutParams();
+        if (params.height == LinearLayout.LayoutParams.WRAP_CONTENT) {
+            params.height = (int) (120 * getResources().getDisplayMetrics().density);
+        } else {
+            params.height = LinearLayout.LayoutParams.WRAP_CONTENT;
+        }
+        listView.setLayoutParams(params);
     }
 
     private void startKeepAliveService() {

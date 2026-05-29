@@ -30,7 +30,7 @@ public class SMSReceiver extends BroadcastReceiver {
         if (pdus == null || pdus.length == 0) return;
 
         SharedPreferences prefs = context.getSharedPreferences("sms_alert_prefs", Context.MODE_PRIVATE);
-        String sendersStr = prefs.getString("senders", "广东交警");
+        String sendersStr = prefs.getString("senders", "交警");
         String keywordsStr = prefs.getString("keywords", "未按规定停放||请立即驶离");
 
         String[] senders = TextUtils.isEmpty(sendersStr) ? new String[0] : sendersStr.split("\\|\\|");
@@ -56,8 +56,10 @@ public class SMSReceiver extends BroadcastReceiver {
                     (body.length() > 30 ? body.substring(0, 30) + "..." : body));
 
             boolean senderMatch = false;
+            // 匹配发件人地址 或 短信内容中含发件人关键词
             for (String s : senders) {
-                if (!TextUtils.isEmpty(s) && sender.contains(s)) {
+                if (TextUtils.isEmpty(s)) continue;
+                if (sender.contains(s) || body.contains(s)) {
                     senderMatch = true;
                     break;
                 }
