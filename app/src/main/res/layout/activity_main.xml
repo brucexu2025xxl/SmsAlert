@@ -1,0 +1,198 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:padding="16dp"
+    android:background="#F5F5F5">
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text=" 短信违停提醒"
+                android:textSize="22sp"
+                android:textStyle="bold"
+                android:textColor="#D32F2F"
+                android:gravity="center"
+                android:paddingBottom="12dp" />
+
+            <!-- 发件人管理 -->
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text=" 监控发件人（含关键词即可匹配）"
+                android:textSize="14sp"
+                android:textColor="#666666"
+                android:paddingBottom="6dp" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:gravity="center_vertical">
+
+                <EditText
+                    android:id="@+id/sender_input"
+                    android:layout_width="0dp"
+                    android:layout_height="48dp"
+                    android:layout_weight="1"
+                    android:hint="例如: 广东交警"
+                    android:background="#FFFFFF"
+                    android:paddingLeft="12dp"
+                    android:paddingRight="12dp"
+                    android:textSize="15sp"
+                    android:singleLine="true" />
+
+                <Button
+                    android:id="@+id/add_sender_btn"
+                    android:layout_width="wrap_content"
+                    android:layout_height="48dp"
+                    android:text="添加"
+                    android:textSize="14sp"
+                    android:layout_marginLeft="8dp" />
+            </LinearLayout>
+
+            <ListView
+                android:id="@+id/sender_list"
+                android:layout_width="match_parent"
+                android:layout_height="120dp"
+                android:background="#FFFFFF"
+                android:padding="4dp"
+                android:layout_marginTop="4dp" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text=" 长按列表项可删除"
+                android:textSize="11sp"
+                android:textColor="#999999"
+                android:paddingBottom="12dp" />
+
+            <!-- 关键词管理 -->
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text=" 监控关键词（短信中含此词即匹配）"
+                android:textSize="14sp"
+                android:textColor="#666666"
+                android:paddingBottom="6dp" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:gravity="center_vertical">
+
+                <EditText
+                    android:id="@+id/keyword_input"
+                    android:layout_width="0dp"
+                    android:layout_height="48dp"
+                    android:layout_weight="1"
+                    android:hint="例如: 未按规定停放"
+                    android:background="#FFFFFF"
+                    android:paddingLeft="12dp"
+                    android:paddingRight="12dp"
+                    android:textSize="15sp"
+                    android:singleLine="true" />
+
+                <Button
+                    android:id="@+id/add_keyword_btn"
+                    android:layout_width="wrap_content"
+                    android:layout_height="48dp"
+                    android:text="添加"
+                    android:textSize="14sp"
+                    android:layout_marginLeft="8dp" />
+            </LinearLayout>
+
+            <ListView
+                android:id="@+id/keyword_list"
+                android:layout_width="match_parent"
+                android:layout_height="120dp"
+                android:background="#FFFFFF"
+                android:padding="4dp"
+                android:layout_marginTop="4dp" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text=" 长按列表项可删除"
+                android:textSize="11sp"
+                android:textColor="#999999"
+                android:paddingBottom="12dp" />
+
+            <!-- 分隔线 -->
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="#DADADA"
+                android:layout_marginTop="8dp"
+                android:layout_marginBottom="8dp" />
+
+            <!-- 匹配日志 -->
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text=" 匹配记录"
+                android:textSize="14sp"
+                android:textColor="#666666"
+                android:paddingBottom="6dp" />
+
+            <ScrollView
+                android:id="@+id/log_scroll"
+                android:layout_width="match_parent"
+                android:layout_height="200dp"
+                android:background="#FFFFFF"
+                android:padding="8dp">
+
+                <TextView
+                    android:id="@+id/log_text"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="暂无匹配记录"
+                    android:textSize="13sp"
+                    android:textColor="#333333"
+                    android:fontFamily="monospace" />
+            </ScrollView>
+
+            <Button
+                android:id="@+id/clear_log_btn"
+                android:layout_width="wrap_content"
+                android:layout_height="40dp"
+                android:text="清空日志"
+                android:textSize="13sp"
+                android:layout_gravity="end"
+                android:layout_marginTop="4dp" />
+
+        </LinearLayout>
+    </ScrollView>
+
+    <!-- 底部操作按钮 -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:gravity="center"
+        android:paddingTop="12dp">
+
+        <Button
+            android:id="@+id/check_perms_btn"
+            android:layout_width="0dp"
+            android:layout_height="52dp"
+            android:layout_weight="1"
+            android:text="检查权限与设置"
+            android:textSize="15sp"
+            android:textColor="#FFFFFF"
+            android:backgroundTint="#1976D2" />
+    </LinearLayout>
+
+</LinearLayout>
